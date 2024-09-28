@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"rsc.io/quote"
+)
 
 const PI = 3.14
 
@@ -60,4 +64,5 @@ func main() {
 	school := "Jiwan's School"
 	getSchoolParam(school)
 	dataTypes()
+	fmt.Println(quote.Go())
 }
