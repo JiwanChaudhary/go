@@ -7,6 +7,39 @@ package main
 
 import "fmt"
 
+func twoSum(nums []int, target int) []int {
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i]+nums[j] == target {
+				return []int{i, j}
+			}
+		}
+	}
+	return nil
+}
+
+func removeDuplicates(nums []int) int {
+	count := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[count] != nums[i] {
+			count++
+			nums[count] = nums[i]
+		}
+	}
+	return count + 1
+}
+
+func removeElement(nums []int, val int) int {
+	count := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != val {
+			nums[count] = nums[i]
+			count++
+		}
+	}
+	return count
+}
+
 func main() {
 	// basic for loop
 	for i := 0; i < 10; i++ {
@@ -49,4 +82,9 @@ func main() {
 	}
 
 	fmt.Println("range based for loop ends")
+	// println(test())
+
+	fmt.Println(removeElement([]int{3, 2, 2, 2}, 3))
+	fmt.Println(string(123))
+
 }
