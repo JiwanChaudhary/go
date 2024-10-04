@@ -14,6 +14,7 @@ type CmdFlags struct {
 	Edit   string
 	Toggle int
 	List   bool
+	Cmd    bool
 }
 
 func NewCmdFlags() *CmdFlags {
@@ -23,7 +24,8 @@ func NewCmdFlags() *CmdFlags {
 	flag.StringVar(&cf.Edit, "edit", "", "Edit a todo by index & specify a new title. id:new_title")
 	flag.IntVar(&cf.Del, "del", -1, "Delete a todo by index to delete.")
 	flag.IntVar(&cf.Toggle, "toggle", -1, "Delete a todo by index to toggle.")
-	flag.BoolVar(&cf.List, "list", false, "Liat all todos")
+	flag.BoolVar(&cf.List, "list", false, "List all todos")
+	flag.BoolVar(&cf.Cmd, "cmd", false, "List all available commands")
 
 	flag.Parse()
 
@@ -57,8 +59,20 @@ func (cf *CmdFlags) Execute(todos *Todos) {
 	case cf.Del != -1:
 		todos.delete(cf.Del)
 
+	case cf.Cmd:
+		commands()
 	default:
 		fmt.Println("Invalid command")
 
 	}
+}
+
+// Available commands
+func commands() {
+	fmt.Println("The available commands are:")
+	fmt.Println("-add: Add a new title.")
+	fmt.Println("-edit: Edit a title.")
+	fmt.Println("-toggle: Toggle title as completed.")
+	fmt.Println("-list: List all todos.")
+	fmt.Println("-del: Delete a todo.")
 }
